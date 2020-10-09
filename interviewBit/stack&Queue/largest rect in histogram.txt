@@ -1,0 +1,50 @@
+public class Solution {
+    public int largestRectangleArea(ArrayList<Integer> a) {
+        int size = a.size();
+        int rb [] = new int [size];
+        Stack<Integer> st1 = new Stack<>();
+        st1.push(size - 1);
+        rb[size - 1] = size;
+        
+        for(int i = size - 2; i >= 0; i--){
+            while(st1.size() > 0 && a.get(i) <= a.get(st1.peek())){
+                st1.pop();
+            }
+             if(st1.size() == 0){
+            rb[i] = size;
+        }else{
+            rb[i] = st1.peek();
+        }
+        st1.push(i);
+        }
+       
+        int lb [] = new int [size];
+        st1 = new Stack<>();
+        st1.push(0);
+        lb[0] = -1;
+        
+        for(int i = 1; i < size; i++){
+            while(st1.size() > 0 && a.get(i) <= a.get(st1.peek())){
+                st1.pop();
+            }
+             if(st1.size() == 0){
+            lb[i] = -1;
+        }else{
+            lb[i] = st1.peek();
+        }
+        st1.push(i);
+        }
+        
+        int maxArea = 0;
+        
+        for(int i = 0; i < size; i++){
+            int width = rb[i] - lb[i] -1;
+            int area = width * a.get(i);
+            if(area > maxArea){
+                maxArea = area;
+            }
+        }
+        return maxArea;
+        
+    }
+}

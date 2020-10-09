@@ -1,0 +1,65 @@
+public class Solution {
+    static int len(ListNode head)
+    {
+        if(head==null)
+            return 0;
+        if(head.next==null)
+            return 1;
+        
+        int count=0;
+        while(head.next!=null)
+        {
+            count++;
+            head=head.next;
+        }
+        return count+1;
+    }
+    
+    
+    public int solve(ListNode A, int B) {
+        if(A==null)
+            return -1;
+            
+        ListNode head=A;
+        int mid=(len(A)/2)+1;;
+        int pos=mid-B;
+        
+        if(pos<=0)
+            return -1;
+            
+        int i=0;
+        while(head.next!=null)
+        {
+            if(i++==pos-1)
+                return head.val;
+            head=head.next;
+        }
+        return -1;
+    }
+}
+
+
+int Solution::solve(ListNode* A, int B) {
+    int n = 0;
+ListNode *temp = A;
+while(temp)
+{
+n++;
+temp = temp->next;
+}
+
+int required_node = (n / 2) + 1 - B;
+
+if(required_node <= 0)
+return -1;
+
+temp = A;
+n = 0;
+while(temp)
+{
+n++;
+if(n == required_node)
+return temp->val;
+temp = temp->next;
+}
+}

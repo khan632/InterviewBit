@@ -1,0 +1,18 @@
+public class Solution {
+    public String reverseString(String A) {
+        Stack<String> st = new Stack<>();
+        String ans = "";
+        
+        for(int i = 0; i < A.length(); i++){
+           String s = A.substring(i, i + 1);
+            st.push(s);
+        }
+        
+        while(!st.isEmpty()){
+           String ch = st.peek();
+           
+            ans += ch;
+        }
+        return ans;
+    }
+}

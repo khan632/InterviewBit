@@ -1,0 +1,25 @@
+public class Solution {
+    public int isValid(String A) {
+        String open = "{([";
+        String close = "})]";
+        
+        Stack<Character> stack = new Stack<>();
+        
+        for(char c : A.toCharArray()){
+             if (open.indexOf(c) != -1) {
+                stack.push(c);
+            }
+            else {
+                if (stack.isEmpty()) {
+                    return 0;
+                }
+                char temp = stack.pop();
+                if (open.indexOf(temp) != close.indexOf(c)) {
+                    return 0;
+                }
+            }
+        }
+        
+        return stack.isEmpty() == true ? 1 : 0;
+        }
+    }

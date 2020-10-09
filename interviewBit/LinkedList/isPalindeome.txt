@@ -1,0 +1,23 @@
+public class Solution {
+    ListNode left;
+    public int lPalin(ListNode node) {
+        left = node;
+        return helperLPalin(node);
+        
+    }
+    
+    public int helperLPalin(ListNode right){
+        if(right == null){
+            return 1;
+        }
+        int ans = helperLPalin(right.next);
+        if(ans == 0){
+            return 0;
+        }else if(right.val != left.val){
+            return 0;
+        }else{
+            left = left.next;
+            return 1;
+        }
+    }
+}
